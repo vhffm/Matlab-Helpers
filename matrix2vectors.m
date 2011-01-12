@@ -39,17 +39,6 @@ for i = 1:size(M,1)
   end
 end
 
-% We now select any (x0,y0), and check with all FOLLOWING (x1,y1) pairs to
-% pick the one which minimizes the distance between the two.
-%
-% Once done, we move (x1,y1) behind (x0,y0) in the vectors.
-%
-% Then, rinse and repeat starting at the former (x1,y1) as (x0,y0). Only
-% look at the following points so we don't treat previously visited points!
-%
-% @todo If this doesn't yield the desired result, add a constraint on the
-% angle!
-
 % Run through all elements in X,Y,I,J (they all have the same length)
 for ii = 1 : length(X) - 1
   
