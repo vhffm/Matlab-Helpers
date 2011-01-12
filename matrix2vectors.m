@@ -29,14 +29,14 @@ J = [];
 
 % Loop through M to extract all points where M = 1
 for i = 1:size(M,1)
-    for j = 1:size(M,2)
-        if M(i,j) > 0
-            X = [ X x(j) ];
-            J = [ J j ];
-            Y = [ Y y(i) ];
-            I = [ I i ];
-        end 
+  for j = 1:size(M,2)
+    if M(i,j) > 0
+      X = [ X x(j) ];
+      J = [ J j ];
+      Y = [ Y y(i) ];
+      I = [ I i ];
     end
+  end
 end
 
 % We now select any (x0,y0), and check with all FOLLOWING (x1,y1) pairs to
