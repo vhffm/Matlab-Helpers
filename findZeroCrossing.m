@@ -36,7 +36,12 @@ if( y_min_logical == 1 )
 else
     % 1 - find last/first pos/neg entry
     pos = ( y_in > 0 );
-    pos_shift = circshift( pos, [ 0 1 ] );
+    
+    % circshift is slow; replace with some simple vector stuff
+    % note that we're wrapping around ROW vector
+%     pos_shift = circshift( pos, [ 0 1 ] );
+    pos_shift = [ pos(end) pos(1:end-1) ];
+    
     % Depending on whether the function is increasing or decreasing, the
     % detection value of delta is different. Make graph to see!
     delta = pos - pos_shift;
@@ -45,7 +50,10 @@ else
     elseif( pos(1) == 0 )
         cross_hi = ( delta == 1 );
     end
-    cross_lo = circshift( cross_hi, [ 0 -1 ] );
+    % replace circshiftt as bove; note we're shifting the other way now
+    % i.e., the first element goes to the end!
+%     cross_lo = circshift( cross_hi, [ 0 -1 ] );
+    cross_lo = [ cross_hi(2:end) cross_hi(1) ];
 
     % 2 - get x/y values for this
     y_lo = y_in( cross_lo );

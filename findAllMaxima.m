@@ -20,7 +20,9 @@ delta_y = diff( y_in );
 pos = ( delta_y > 0 );
 
 % Shift Binary Copy
-pos_shift = circshift( pos, [ 0 1 ] );
+% Shift is slow, do it manually! (shifting a row vector, btw)
+% pos_shift = circshift( pos, [ 0 1 ] );
+pos_shift = [ pos(end) pos(1:end-1) ];
 
 % Subtract
 delta = pos - pos_shift;
